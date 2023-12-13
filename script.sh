@@ -102,7 +102,7 @@ echo "Activation du service Bluetooth..."
 sudo systemctl enable bluetooth.service
 sudo systemctl start bluetooth.service
 
-># Installation de Docker
+# Installation de Docker
 echo "Installation de Docker..."
 sudo pacman -S docker --noconfirm
 
@@ -132,7 +132,7 @@ mkdir -p "$WEZTERM_CONFIG_DIR"
 # Copy the wezterm.lua configuration file
 # Assuming the configuration file is located at ~/wezterm.lua on your system
 # You can adjust the source path as needed
-cp ~/wezterm.lua "$WEZTERM_CONFIG_FILE"
+cp ./config/wezterm.config "$WEZTERM_CONFIG_FILE"
 
 echo "Script terminé. Veuillez redémarrer votre système pour appliquer les changements."
 
