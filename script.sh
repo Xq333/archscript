@@ -8,9 +8,14 @@ sudo pacman -Syu --noconfirm
 echo "Installation de Vim, NeoVim, Curl et Git..."
 sudo pacman -S vim neovim curl git --noconfirm
 
-# Installation de l'environnement de bureau KDE Plasma et des applications associées, de Xorg et de quelques utilitaires
-echo "Installation de KDE Plasma, applications KDE, Xorg, et utilitaires..."
-sudo pacman -S plasma-meta kde-applications-meta xorg konsole yakuake dolphin sddm --noconfirm
+# Installation d'Awesome WM et de ses dépendances
+echo "Installation d'Awesome WM..."
+sudo pacman -S awesome vicious --noconfirm
+
+# Installation de LightDM comme gestionnaire de connexion (si nécessaire)
+echo "Installation de LightDM..."
+sudo pacman -S lightdm lightdm-gtk-greeter --noconfirm
+sudo systemctl enable lightdm
 
 # Installation de yay pour les paquets AUR
 echo "Installation de yay pour AUR..."
