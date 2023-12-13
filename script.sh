@@ -12,6 +12,17 @@ sudo pacman -S vim neovim curl git --noconfirm
 echo "Installation de KDE Plasma, applications KDE, Xorg, et utilitaires..."
 sudo pacman -S plasma-meta kde-applications-meta xorg konsole yakuake dolphin sddm --noconfirm
 
+# Installation de yay pour les paquets AUR
+echo "Installation de yay pour AUR..."
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ..
+
+# Utilisation de yay pour installer Spotify
+echo "Installation de Spotify via AUR..."
+yay -S spotify --noconfirm
+
 # Installation de Zsh, Neofetch et WezTerm
 echo "Installation de Zsh, Neofetch et WezTerm..."
 sudo pacman -S zsh neofetch wezterm --noconfirm
@@ -48,13 +59,12 @@ chsh -s $(which zsh)
 echo "Installation du thème Powerlevel10k pour Oh-My-Zsh..."
 git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-# Configuration du thème Powerlevel10k dans .zshrc
-echo "Configuration du thème Powerlevel10k dans .zshrc..."
-echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' >> ~/.zshrc
-
 # Modification de .zshrc pour utiliser le thème Powerlevel10k
 echo "Configuration du thème Powerlevel10k dans .zshrc..."
 sed -i 's|^ZSH_THEME=".*"|ZSH_THEME="powerlevel10k/powerlevel10k"|' ~/.zshrc
+
+echo "Configuration de Powerlevel10k..."
+cp p10k.config ~/.p10k.zsh
 
 # Ajout de Neofetch au démarrage du terminal
 echo "Configuration de Neofetch au démarrage..."
@@ -80,13 +90,34 @@ sudo pacman -S kvantum-qt5 --noconfirm
 echo "Sauvegarde du fichier de configuration des raccourcis..."
 cp ~/.config/kglobalshortcutsrc ~/.config/kglobalshortcutsrc.backup
 
-# Modification du fichier de raccourcis pour utiliser WezTerm au lieu de Konsole
-echo "Modification du raccourci pour WezTerm..."
-sed -i 's/Konsole/WezTerm/g' ~/.config/kglobalshortcutsrc
+# Copie du fichier de configuration des raccourcis personnalisé
+echo "Mise à jour des raccourcis clavier avec le fichier personnalisé..."
+cp ./shortcuts.config ~/.config/kglobalshortcutsrc
 
-# Recharger la configuration des raccourcis clavier
-echo "Rechargement de la configuration des raccourcis clavier..."
-qdbus org.kde.kglobalaccel /component/khotkeys reconfigure
+echo "Installation des outils Bluetooth..."
+sudo pacman -S bluez bluez-utils blueman --noconfirm
+
+# Activation du service Bluetooth
+echo "Activation du service Bluetooth..."
+sudo systemctl enable bluetooth.service
+sudo systemctl start bluetooth.service
+
+># Installation de Docker
+echo "Installation de Docker..."
+sudo pacman -S docker --noconfirm
+
+# Activer et démarrer le service Docker
+echo "Activation du service Docker..."
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+
+# Ajouter l'utilisateur courant au groupe docker
+echo "Ajout de l'utilisateur $(whoami) au groupe Docker..."
+sudo usermod -aG docker $(whoami)
+
+# Installation de Docker Compose
+echo "Installation de Docker Compose..."
+sudo pacman -S docker-compose --noconfirm
 
 echo "Script terminé. Veuillez redémarrer votre système pour appliquer les changements."
 
