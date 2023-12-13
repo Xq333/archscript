@@ -64,7 +64,7 @@ echo "Configuration du thème Powerlevel10k dans .zshrc..."
 sed -i 's|^ZSH_THEME=".*"|ZSH_THEME="powerlevel10k/powerlevel10k"|' ~/.zshrc
 
 echo "Configuration de Powerlevel10k..."
-cp p10k.config ~/.p10k.zsh
+cp ./config/p10k.config ~/.p10k.zsh
 
 # Ajout de Neofetch au démarrage du terminal
 echo "Configuration de Neofetch au démarrage..."
@@ -92,7 +92,7 @@ cp ~/.config/kglobalshortcutsrc ~/.config/kglobalshortcutsrc.backup
 
 # Copie du fichier de configuration des raccourcis personnalisé
 echo "Mise à jour des raccourcis clavier avec le fichier personnalisé..."
-cp ./shortcuts.config ~/.config/kglobalshortcutsrc
+cp ./config/shortcuts.config ~/.config/kglobalshortcutsrc
 
 echo "Installation des outils Bluetooth..."
 sudo pacman -S bluez bluez-utils blueman --noconfirm
@@ -118,6 +118,21 @@ sudo usermod -aG docker $(whoami)
 # Installation de Docker Compose
 echo "Installation de Docker Compose..."
 sudo pacman -S docker-compose --noconfirm
+
+# Installation de Fira code
+sudo pacman -S ttf-fira-code
+
+# Define the configuration directory and file
+WEZTERM_CONFIG_DIR="$HOME/.config/wezterm"
+WEZTERM_CONFIG_FILE="$WEZTERM_CONFIG_DIR/wezterm.lua"
+
+# Create the WezTerm configuration directory if it doesn't exist
+mkdir -p "$WEZTERM_CONFIG_DIR"
+
+# Copy the wezterm.lua configuration file
+# Assuming the configuration file is located at ~/wezterm.lua on your system
+# You can adjust the source path as needed
+cp ~/wezterm.lua "$WEZTERM_CONFIG_FILE"
 
 echo "Script terminé. Veuillez redémarrer votre système pour appliquer les changements."
 
