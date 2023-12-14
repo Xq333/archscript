@@ -6,16 +6,15 @@ sudo pacman -Syu --noconfirm
 
 # Installation des éditeurs de texte Vim et NeoVim, de Curl, et de Git
 echo "Installation de Vim, NeoVim, Curl et Git..."
-sudo pacman -S vim neovim curl git --noconfirm
+sudo pacman -S discord vim neovim curl git --noconfirm
 
-# Installation d'Awesome WM et de ses dépendances
-echo "Installation d'Awesome WM..."
-sudo pacman -S awesome vicious --noconfirm
+# Installation de l'environnement de bureau GNOME
+echo "Installation de l'environnement de bureau GNOME..."
+sudo pacman -S gnome gnome-extra --noconfirm
 
-# Installation de LightDM comme gestionnaire de connexion (si nécessaire)
-echo "Installation de LightDM..."
-sudo pacman -S lightdm lightdm-gtk-greeter --noconfirm
-sudo systemctl enable lightdm
+# Activation du gestionnaire de session GDM (GNOME Display Manager)
+echo "Activation de GDM..."
+sudo systemctl enable gdm
 
 # Installation de yay pour les paquets AUR
 echo "Installation de yay pour AUR..."
@@ -88,16 +87,16 @@ echo "Activation de NetworkManager..."
 sudo systemctl enable NetworkManager
 
 # Installation de Kvantum pour les thèmes
-echo "Installation de Kvantum..."
-sudo pacman -S kvantum-qt5 --noconfirm
+#echo "Installation de Kvantum..."
+#sudo pacman -S kvantum-qt5 --noconfirm
 
 # Sauvegarde du fichier de configuration des raccourcis
-echo "Sauvegarde du fichier de configuration des raccourcis..."
-cp ~/.config/kglobalshortcutsrc ~/.config/kglobalshortcutsrc.backup
+#echo "Sauvegarde du fichier de configuration des raccourcis..."
+#cp ~/.config/kglobalshortcutsrc ~/.config/kglobalshortcutsrc.backup
 
 # Copie du fichier de configuration des raccourcis personnalisé
-echo "Mise à jour des raccourcis clavier avec le fichier personnalisé..."
-cp ./config/shortcuts.config ~/.config/kglobalshortcutsrc
+#echo "Mise à jour des raccourcis clavier avec le fichier personnalisé..."
+#cp ./config/shortcuts.config ~/.config/kglobalshortcutsrc
 
 echo "Installation des outils Bluetooth..."
 sudo pacman -S bluez bluez-utils blueman --noconfirm
@@ -140,4 +139,3 @@ mkdir -p "$WEZTERM_CONFIG_DIR"
 cp ./config/wezterm.config "$WEZTERM_CONFIG_FILE"
 
 echo "Script terminé. Veuillez redémarrer votre système pour appliquer les changements."
-
