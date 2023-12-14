@@ -6,7 +6,11 @@ sudo pacman -Syu --noconfirm
 
 # Installation des éditeurs de texte Vim et NeoVim, de Curl, et de Git
 echo "Installation de Vim, NeoVim, Curl et Git..."
-sudo pacman -S discord vim neovim curl git --noconfirm
+sudo pacman -S discord vim neovim curl tree git --noconfirm
+
+sudo pacman -S xdg-utils
+
+echo "alias open='xdg-open'" >> ~/.bashrc
 
 # Installation de l'environnement de bureau GNOME
 echo "Installation de l'environnement de bureau GNOME..."
@@ -128,5 +132,33 @@ cp ./config/wezterm.config "$WEZTERM_CONFIG_FILE"
 
 # Copier les shortcuts
 dconf load /org/gnome/settings-daemon/plugins/media-keys/ < custom-keybindings.conf
+
+# Installer l'extension pour arrondir les bords des fenêtres
+# Vous aurez besoin de gnome-shell-extensions et chrome-gnome-shell pour cela
+sudo pacman -S gnome-shell-extensions chrome-gnome-shell --noconfirm
+
+# Installer l'outil gnome-extensions-cli si nécessaire
+sudo pacman -S gnome-extensions-cli --noconfirm
+
+yay -S gnome-shell-extension-pop-shell-git
+
+git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+
+git clone https://github.com/aunetx/blur-my-shell
+cd blur-my-shell
+make install
+cd ..
+
+# Set GNOME to use the dark theme
+echo "Setting dark mode..."
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+
+# Define the path to the wallpaper
+WALLPAPER_PATH="$HOME/archscript/wallpaper/neon.jpg"
+
+# Set the wallpaper
+echo "Setting wallpaper..."
+gsettings set org.gnome.desktop.background picture-uri "file://$WALLPAPER_PATH"
+
 
 echo "Script terminé. Veuillez redémarrer votre système pour appliquer les changements."
