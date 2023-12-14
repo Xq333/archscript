@@ -86,18 +86,6 @@ sudo systemctl enable sddm
 echo "Activation de NetworkManager..."
 sudo systemctl enable NetworkManager
 
-# Installation de Kvantum pour les thèmes
-#echo "Installation de Kvantum..."
-#sudo pacman -S kvantum-qt5 --noconfirm
-
-# Sauvegarde du fichier de configuration des raccourcis
-#echo "Sauvegarde du fichier de configuration des raccourcis..."
-#cp ~/.config/kglobalshortcutsrc ~/.config/kglobalshortcutsrc.backup
-
-# Copie du fichier de configuration des raccourcis personnalisé
-#echo "Mise à jour des raccourcis clavier avec le fichier personnalisé..."
-#cp ./config/shortcuts.config ~/.config/kglobalshortcutsrc
-
 echo "Installation des outils Bluetooth..."
 sudo pacman -S bluez bluez-utils blueman --noconfirm
 
@@ -137,5 +125,8 @@ mkdir -p "$WEZTERM_CONFIG_DIR"
 # Assuming the configuration file is located at ~/wezterm.lua on your system
 # You can adjust the source path as needed
 cp ./config/wezterm.config "$WEZTERM_CONFIG_FILE"
+
+# Copier les shortcuts
+dconf load /org/gnome/settings-daemon/plugins/media-keys/ < custom-keybindings.conf
 
 echo "Script terminé. Veuillez redémarrer votre système pour appliquer les changements."
