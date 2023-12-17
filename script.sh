@@ -6,7 +6,7 @@ sudo pacman -Syu --noconfirm
 
 # Installation des éditeurs de texte Vim et NeoVim, de Curl, et de Git
 echo "Installation de Vim, NeoVim, Curl et Git..."
-sudo pacman -S discord vim neovim curl tree git --noconfirm
+sudo pacman -S vim neovim curl tree git --noconfirm
 
 sudo pacman -S xdg-utils
 
@@ -160,5 +160,12 @@ WALLPAPER_PATH="$HOME/archscript/wallpaper/neon.jpg"
 echo "Setting wallpaper..."
 gsettings set org.gnome.desktop.background picture-uri "file://$WALLPAPER_PATH"
 
+# This is for discord with screenshare
+# https://lemmy.eus/post/188566
+#
+sudo pacman -S flatpak
+yay -S google-chrome
+mkdir ~/Apps
+curl -L -o ~/Apps/WebCord.AppImage https://github.com/SpacingBat3/WebCord/releases/download/v4.6.0/WebCord-4.6.0-x64.AppImage
 
 echo "Script terminé. Veuillez redémarrer votre système pour appliquer les changements."
