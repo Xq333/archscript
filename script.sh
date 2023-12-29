@@ -167,6 +167,9 @@ sudo pacman -S flatpak
 yay -S google-chrome
 mkdir ~/Apps
 curl -L -o ~/Apps/WebCord.AppImage https://github.com/SpacingBat3/WebCord/releases/download/v4.6.0/WebCord-4.6.0-x64.AppImage
+
+sudo cp ./config/neofetch.config ~/.config/neofetch/config.conf
+
 echo "alias open='xdg-open'" >> ~/.zshrc
 
 echo "Script terminé. Veuillez redémarrer votre système pour appliquer les changements."
