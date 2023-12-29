@@ -27,6 +27,14 @@ yay -S mongodb-bin
 
 sudo pacman -S rsync --noconfirm
 
-sudo pacman -S mariadb
+sudo pacman -S mariadb --noconfirm
 
-sudo pacman -S john
+sudo pacman -S john --noconfirm
+
+sudo pacman -S python-pip --noconfirm
+
+sudo pacman -S python-netifaces --noconfirm
+
+sudo yay -S responder
+
+sudo pacman -S net-tools --noconfirm
