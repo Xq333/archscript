@@ -28,3 +28,5 @@ yay -S mongodb-bin
 sudo pacman -S rsync --noconfirm
 
 sudo pacman -S mariadb
+
+sudo pacman -S john
