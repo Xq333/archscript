@@ -38,3 +38,21 @@ sudo pacman -S python-netifaces --noconfirm
 sudo yay -S responder
 
 sudo pacman -S net-tools --noconfirm
+
+sudo pacman -S ruby --noconfirm
+
+gem install winrm winrm-fs stringio
+
+gem install evil-winrm
+
+sudo pacman -S openssl --noconfirm
+
+sudo pacman -S aws-cli --noconfirm
+
+yay -S ltrace
+
+sudo pacman -S radare2 --noconfirm
+
+yay -S hydra
+
+echo 'export PATH="$PATH:/$HOME/.local/share/gem/ruby/3.0.0/bin"' >> ~/.zshrc
